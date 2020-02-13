@@ -14,5 +14,10 @@ namespace FiveZ
         {
             Console.WriteLine("Stopping FiveZ Server...");
         }
+
+        public override void OnTick()
+        {
+            base.OnTick();
+        }
     }
 }
