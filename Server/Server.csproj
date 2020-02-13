@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>FiveZServer</AssemblyName>
+    <RootNamespace>FiveZ</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\AltV\server-files\resources\fivez\server\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="AltV.Net">
+      <HintPath>..\..\coreclr-module\api\AltV.Net\bin\Debug\netcoreapp3.1\AltV.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="AltV.Net.Async">
+      <HintPath>..\..\coreclr-module\api\AltV.Net.Async\bin\Debug\netcoreapp3.1\AltV.Net.Async.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="set ResourceDir=C:\altv\server-files\resources\fivez&#xD;&#xA;set ServerDir=%25ResourceDir%25\Server&#xD;&#xA;xcopy /Y $(TargetPath) %25ServerDir%25&#xD;&#xA;" />
+  </Target>
+
+</Project>
