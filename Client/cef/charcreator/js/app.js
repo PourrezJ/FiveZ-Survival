@@ -253,10 +253,10 @@ app.controller("CharCtrl", function ($scope, $ngConfirm, $timeout) {
         $scope.ParentsName[0] = fatherNames[$scope.Parents[0].findIndex((parent) => parent === $scope.char.Parents.ShapeFirst)];
         $scope.ParentsName[1] = motherNames[$scope.Parents[1].findIndex((parent) => parent === $scope.char.Parents.ShapeSecond)];
 
-        console.log(`debug: ${$scope.ParentsName[0]} || ${$scope.ParentsName[1]}`);
     };
 
     $scope.saveChar = function () {
+        /*
         if ($scope.char.Identite.LastName === null || $scope.char.Identite.LastName === "") {
             $scope.error("Erreur !", "Nous avons besoin de votre nom de famille pour le passeport");
             return;
@@ -288,16 +288,16 @@ app.controller("CharCtrl", function ($scope, $ngConfirm, $timeout) {
         }
 
         close_passport();
-
+        */
         for (var i in $scope.char.Appearance) {
             $scope.char.Appearance[i].Index = $scope.char.Appearance[i].Index === -1 ? 255 : $scope.char.Appearance[i].Index;
             $scope.char.Appearance[i].Color = $scope.char.Appearance[i].Color === -1 ? 255 : $scope.char.Appearance[i].Color; 
             $scope.char.Appearance[i].SecondaryColor = $scope.char.Appearance[i].SecondaryColor === -1 ? 255 : $scope.char.Appearance[i].SecondaryColor;
         }
 
-        $scope.char.Identite.BirthDate = moment($scope.char.Identite.BirthDate, "DD/MM/YYYY").format("YYYY-MM-DD");
+        //$scope.char.Identite.BirthDate = moment($scope.char.Identite.BirthDate, "DD/MM/YYYY").format("YYYY-MM-DD");
 
-        alt.emit("saveCharacter", JSON.stringify($scope.char), JSON.stringify($scope.char.Identite));
+        alt.emit("saveCharacter", JSON.stringify($scope.char)/*, JSON.stringify($scope.char.Identite)*/);
     };
 
     $scope.updateValue = function (newValue, field, field2, max) {
@@ -484,6 +484,7 @@ app.controller("CharCtrl", function ($scope, $ngConfirm, $timeout) {
                     $("#options").css("top", "initial");
                     $("#options").css("bottom", "40px");
                 }
+                alt.emit('onmenuchange', $scope.currentMenu);
             }, 1);
         }, true);
         console.log("charLoaded !");
@@ -506,9 +507,10 @@ function open_character_creator() {
     close_gender_selection();
     close_passport();
     $("#character_creator #navigation li").css("transform", "translateY(0%)");
-    $("#character_creator .content").css("background-image", "-webkit-linear-gradient(left, rgba(255, 42, 0, 0.788235294117647), transparent 80%)");
+    //$("#character_creator .content").css("background-image", "-webkit-linear-gradient(left, rgba(255, 42, 0, 0.788235294117647), transparent 80%)");
     $("#character_creator .precedent").css("opacity", "1");
     $("#character_creator a.next.perso").css("display", "block");
+    alt.emit('open_character_creator');
 }
 
 function close_character_creator() {

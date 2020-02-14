@@ -17,13 +17,6 @@
 <body ng-controller="CharCtrl">
   <div id="sexe">
     <div class="content">
-      <div class="logo">
-          <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.26 61.94">
-              <title>resurrection_logo</title>
-              <path d="M311.74,334.41l1.89,5.95H299.46l3.76-11-5-4.74,15.3,2.56h0a6.76,6.76,0,0,1,3.48,5.91h0l-2-.18c-1-.1-2.73.1-3.43.87Z" transform="translate(-244.54 -318.58)" />
-              <path d="M306.67,380.52c17.65,0,19.67-3.49,19.67-3.49L321,365.26h15.05a27.19,27.19,0,0,0,20.05-8.82h0l-10.66-7.72h5.3a16.57,16.57,0,0,0,15.1-9.74h0l-11.21-6.8h1.05a13.12,13.12,0,0,0,13.11-13.56v0H330.2c0,.44-.08.87-.13,1.3-1.4,11.42-11.89,19.95-23.4,20.2-11.5-.25-22-8.78-23.39-20.2,0-.43-.09-.86-.13-1.3h-38.6v0a13.12,13.12,0,0,0,13.11,13.56h1L247.49,339h0a16.59,16.59,0,0,0,15.11,9.74h5.29l-10.65,7.72h0a27.19,27.19,0,0,0,20.05,8.82h15L287,377S289,380.52,306.67,380.52Z" transform="translate(-244.54 -318.58)" />
-          </svg>
-      </div>
       <div class="sexe">
         <nav>
           <li class="menu" ng-class="{'active' : char.Gender == 0}" ng-disabled="char.Gender == 0" ng-click="setGender(0)">
@@ -43,13 +36,6 @@
     <div class="content">
         <div class="precedent">
           <a onclick="open_gender_selection()"><i class="fas fa-chevron-circle-left"></i>Précédent</a>
-        </div>
-        <div class="logo">
-            <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.26 61.94">
-                <title>resurrection_logo</title>
-                <path d="M311.74,334.41l1.89,5.95H299.46l3.76-11-5-4.74,15.3,2.56h0a6.76,6.76,0,0,1,3.48,5.91h0l-2-.18c-1-.1-2.73.1-3.43.87Z" transform="translate(-244.54 -318.58)" />
-                <path d="M306.67,380.52c17.65,0,19.67-3.49,19.67-3.49L321,365.26h15.05a27.19,27.19,0,0,0,20.05-8.82h0l-10.66-7.72h5.3a16.57,16.57,0,0,0,15.1-9.74h0l-11.21-6.8h1.05a13.12,13.12,0,0,0,13.11-13.56v0H330.2c0,.44-.08.87-.13,1.3-1.4,11.42-11.89,19.95-23.4,20.2-11.5-.25-22-8.78-23.39-20.2,0-.43-.09-.86-.13-1.3h-38.6v0a13.12,13.12,0,0,0,13.11,13.56h1L247.49,339h0a16.59,16.59,0,0,0,15.11,9.74h5.29l-10.65,7.72h0a27.19,27.19,0,0,0,20.05,8.82h15L287,377S289,380.52,306.67,380.52Z" transform="translate(-244.54 -318.58)" />
-            </svg>
         </div>
         <div id="navigation">
             <nav>
@@ -98,7 +84,7 @@
                     <span>Pilosité</span>
                 </li>
                 <li class="menu 8" ng-class="{'active' : currentMenu == 8}" ng-click="currentMenu = 8">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200" width="200" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200" width="200" fill="#000000" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" xml:space="preserve">
                     <g>
                     <path d="M39.0375977,88.0859375c0.0009155-0.142334,0.9378052-15.9884033-0.8517456-35.1190796   c-2.7669067,1.2182007-7.8777466,1.3070679-9.2014771,1.3070679s-6.4348145-0.0888672-9.2019043-1.3070679   c-1.7901611,19.1394043-0.852478,34.977417-0.8425293,35.1400757c0.199707,0.5175781,3.2451172,2.5219727,10.0444336,2.5219727   S38.8286133,88.6245117,39.0375977,88.0859375z" />
                     <path d="M35.9429321,51.598999c-0.0026245-0.0294189-0.0171509-0.0547485-0.0171509-0.0848389V34.3122559   c-2.1903687,0.7750244-5.5724487,0.8649902-6.9414062,0.8649902s-4.7510376-0.0899658-6.9414062-0.8649902v17.2911987   c1.5375977,0.3615723,3.8685913,0.6704712,6.9414062,0.6704712C32.0699463,52.2739258,34.4058838,51.9624634,35.9429321,51.598999z   " />
@@ -436,7 +422,7 @@
                 <i class="fas fa-angle-double-right fa-2x" ng-class="{'fa-disabled':char.Appearance[3].Index == limits.headOverlay[3].max}" ng-click="updateHeadOverlay(3, 'Index', limits.headOverlay[3].max);"></i>
             </section>
         </div>
-        <a onclick="open_passport()" class="next perso" >Créer</a>
+        <a ng-click="saveChar()" class="next perso" >Créer</a>
     </div>
     <div style="margin-left:200px;">
         <section>
@@ -492,7 +478,6 @@
           <div class="precedent">
               <a onclick="open_character_creator()"><i class="fas fa-chevron-circle-left"></i>Précédent</a>
           </div>
-          <div class="logo"><svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.26 61.94"><title>resurrection_logo</title><path d="M311.74,334.41l1.89,5.95H299.46l3.76-11-5-4.74,15.3,2.56h0a6.76,6.76,0,0,1,3.48,5.91h0l-2-.18c-1-.1-2.73.1-3.43.87Z" transform="translate(-244.54 -318.58)" /><path d="M306.67,380.52c17.65,0,19.67-3.49,19.67-3.49L321,365.26h15.05a27.19,27.19,0,0,0,20.05-8.82h0l-10.66-7.72h5.3a16.57,16.57,0,0,0,15.1-9.74h0l-11.21-6.8h1.05a13.12,13.12,0,0,0,13.11-13.56v0H330.2c0,.44-.08.87-.13,1.3-1.4,11.42-11.89,19.95-23.4,20.2-11.5-.25-22-8.78-23.39-20.2,0-.43-.09-.86-.13-1.3h-38.6v0a13.12,13.12,0,0,0,13.11,13.56h1L247.49,339h0a16.59,16.59,0,0,0,15.11,9.74h5.29l-10.65,7.72h0a27.19,27.19,0,0,0,20.05,8.82h15L287,377S289,380.52,306.67,380.52Z" transform="translate(-244.54 -318.58)" /></svg></div>
 
           <div class="passux">
               <div id="write">

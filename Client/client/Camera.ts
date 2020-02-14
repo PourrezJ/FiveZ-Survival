@@ -8,17 +8,29 @@ enum CameraMoveType {
 
 export class Camera {
     Handle: number;
+    Fov: number;
+
+    get Pos(): Vector3 {
+        return game.getCamCoord(this.Handle);
+    }
+    set Pos(pos: Vector3) {
+        game.setCamCoord(this.Handle, pos.x, pos.y, pos.z);
+    }
+
+    get Rot(): Vector3 {
+        return game.getCamRot(this.Handle, 0);
+    }
+    set Rot(rot: Vector3) {
+        game.setCamRot(this.Handle, rot.x, rot.y, rot.z, 0);
+    }
+
 
     constructor(pos: Vector3, rot: Vector3, fov: number = 50) {
         this.Pos = pos;
         this.Rot = rot;
         this.Fov = fov;
-        this.Handle = game.createCameraWithParams(game.getHashKey("DEFAULT_SCRIPTED_CAMERA"), this.Pos.x, this.Pos.y, this.Pos.z, this.Rot.x, this.Rot.y, this.Rot.z, this.Fov, true, 2);
+        this.Handle = game.createCameraWithParams(game.getHashKey("DEFAULT_SCRIPTED_CAMERA"), pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, this.Fov, true, 2);
     }
-
-    Pos: Vector3;
-    Rot: Vector3;
-    Fov: number;
 
     SetActiveCamera(active: boolean) {
         game.setCamActive(this.Handle, active);

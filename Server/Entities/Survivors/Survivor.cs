@@ -18,24 +18,25 @@ namespace FiveZ.Entities
 
         public void Load()
         {
+            ulong social = SocialClubId;
+
             Task.Run(async () =>
             {
                 if (!await this.ExistsAsync())
                     return;
 
-                SurvivorData = await SurvivorsManager.GetPlayerDatabase(SocialClubId);
-
-                if (SurvivorData == null)
-                {
-                    await this.EmitAsync("OpenCreator");
-                    AltV.Net.Alt.Server.LogInfo("New player: " + SocialClubId);
-                    return;
-                }
+                SurvivorData = await SurvivorsManager.GetPlayerDatabase(social);
 
                 await AltAsync.Do(() =>
                 {
                     Spawn(new AltV.Net.Data.Position(0, 0, 70), 0);
                     Model = (uint)PedModel.FreemodeMale01;
+
+                    if (SurvivorData == null)
+                    {
+                        Emit("OpenCreator");
+                        AltV.Net.Alt.Server.LogInfo("New player: " + social);
+                    }   
                 });
             });
            

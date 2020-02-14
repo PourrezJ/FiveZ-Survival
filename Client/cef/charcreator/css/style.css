@@ -29,7 +29,7 @@ input{
 .content {
     width: 100%;
     height: 100vh;
-    background-image: -webkit-linear-gradient(left, rgba(255, 42, 0, 0.788235294117647), transparent 80%);
+    /*background-image: -webkit-linear-gradient(left, rgba(0,0,0), transparent 80%);*/
     padding: 30px 50px;
     position: relative;
 }
@@ -167,17 +167,17 @@ a.next.perso, a.next.pass {
 }
 
 nav li.menu {
-  background: #ffd0c5;
-  border-radius: 4px;
-  width: 367px;
-  padding: 18px 20px;
-  margin-bottom: 10px;
-  font-size: 18px;
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #9f7268;
-  cursor: pointer;
+    background: #ddd;
+    border-radius: 4px;
+    width: 367px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000000;
+    cursor: pointer;
 }
 
 nav li.menu.svg-2x {
@@ -196,7 +196,7 @@ nav li.menu.svg-2x svg {
 }
 
 nav li.menu svg path {
-  fill: #9f7268;
+    fill: #000000;
 }
 
 nav li.menu span {
@@ -307,7 +307,7 @@ li.active.menu ul {
     /*height: 5px;
   background: #585858;*/
     outline: none;
-    background-image: -webkit-linear-gradient(left, rgb(255, 42, 0),#464646);
+    background-image: -webkit-linear-gradient(left, rgb(0, 0, 0),#464646);
     border-radius: 13px;
     padding: 0;
 }
@@ -348,7 +348,7 @@ a.next {
   cursor: pointer;
 }
 a.next:hover {
-  background: #ff3f15;
+  /*background: #ff3f15;*/
 }
 
 .passux {
@@ -501,21 +501,21 @@ i.fa-angle-double-right {
 }
 
 #sexe nav li.menu {
-  background: #ffd0c5;
-  border-radius: 4px;
-  width: 175px;
-  height: 190px;
-  padding: 40px;
-  margin-bottom: 10px;
-  font-size: 18px;
-  font-weight: 900;
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #9f7268;
-  cursor: pointer;
-  text-align: center;
-  float: left;
-  margin: 20px;
+    background: #ddd;
+    border-radius: 4px;
+    width: 175px;
+    height: 190px;
+    padding: 40px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000000;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    margin: 20px;
 }
 
 #sexe nav li.menu svg {
@@ -611,7 +611,7 @@ a.next.pass svg {
 }
 
 a.next.pass:hover {
-  background: #ff3f15;
+  /*background: #ff3f15;*/
   color: #fff;
 }
 

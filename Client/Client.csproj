@@ -114,6 +114,8 @@
     <TypeScriptCompile Include="client\includes\NativeUI\utils\Size.ts" />
     <TypeScriptCompile Include="client\includes\NativeUI\utils\UUIDV4.ts" />
     <TypeScriptCompile Include="client\Main.ts" />
+    <TypeScriptCompile Include="client\utils\Enums.ts" />
+    <TypeScriptCompile Include="client\utils\Util.ts" />
     <TypeScriptCompile Include="typings\alt.ts" />
     <TypeScriptCompile Include="typings\natives.d.ts" />
   </ItemGroup>

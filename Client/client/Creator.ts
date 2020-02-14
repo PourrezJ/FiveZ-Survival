@@ -1,15 +1,18 @@
 ﻿import * as alt from 'alt-client';
 import * as game from 'natives';
+import * as util from './utils/Util';
+import * as enums from './utils/Enums';
 //import * as chat from '../Chat/Chat';
-import { Camera } from 'Camera';
+import { Camera } from './Camera';
 
-const playerPoint = {
-    x:  402.8664,
-    y: -996.4108,
-    z: -100.00027
+const playerPos: alt.Vector3 = {
+    x: 1547.5,
+    y: 6620,
+    z: 1.404
 };
 
-export function OpenCharCreator() {
+
+export async function OpenCharCreator() {
     class HeadBlend {
         public ShapeFirst: number;
         public ShapeSecond: number;
@@ -25,24 +28,29 @@ export function OpenCharCreator() {
     alt.showCursor(true);
     //chat.hide(true);
 
-    game.destroyAllCams(true);
-    const camera = new Camera({ x: 402.6751, y: -997.00025, z: -98.30025 }, { x: 0, y: 0, z: 0 })
-    camera.SetActiveCamera(true);
-
-    game.renderScriptCams(true, false, 0, true, false, 0);
+    game.setClockTime(8, 0, 0);
+    game.setOverrideWeather("Halloween");
     game.displayHud(false);
     game.displayRadar(false);
     game.setMouseCursorSprite(6);
 
-    game.requestModel(game.getHashKey('mp_m_freemode_01'));
-    game.requestModel(game.getHashKey('mp_f_freemode_01'));
+    await util.loadModelAsync('mp_m_freemode_01');
+    await util.loadModelAsync('mp_f_freemode_01');
+    await util.loadMovement("move_ped_crouched");
 
-    game.setEntityCoords(alt.Player.local.scriptID, playerPoint.x, playerPoint.y, playerPoint.z, false, false, false, false);
+    game.setEntityCoords(alt.Player.local.scriptID, playerPos.x, playerPos.y, playerPos.z, false, false, false, false);
     game.setEntityHeading(alt.Player.local.scriptID, 180);
-
-    //game.setPedDefaultComponentVariation(alt.Player.local.scriptID);
-    game.setPedHeadBlendData(alt.Player.local.scriptID, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
     game.freezeEntityPosition(alt.Player.local.scriptID, true);
+    game.setPedHeadBlendData(alt.Player.local.scriptID, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+
+    let camPos = util.PositionInFront({ x: playerPos.x + 0.8, y: playerPos.y + 0.8, z: playerPos.z +0.95 }, alt.Player.local.rot, -3.3);
+
+    game.destroyAllCams(true);
+    const camera = new Camera(camPos, util.ForwardVectorFromRotation(camPos));
+    game.pointCamAtCoord(camera.Handle, camPos.x, camPos.y, camPos.z);
+    camera.SetActiveCamera(true);
+
+    game.renderScriptCams(true, false, 0, true, false, 0);
 
     const view = new alt.WebView("http://resource/client/cef/charcreator/index.html", true);
     view.focus();
@@ -53,10 +61,18 @@ export function OpenCharCreator() {
         alt.setTimeout(() => view.emit('CharCreatorLoad'), 1000);
     });
 
+    view.on('open_character_creator', () => {
+        camPos = util.PositionInFront({ x: playerPos.x -0.18, y: playerPos.y, z: playerPos.z + 1.62 }, alt.Player.local.rot, -0.65);
+        camera.Pos = camPos;
+        game.pointCamAtCoord(camera.Handle, camPos.x, camPos.y, camPos.z);
+    });
+
     view.on('setGender', (gender: any) => {
-        alt.setModel(gender == 1 ? 'mp_f_freemode_01' : 'mp_m_freemode_01');
-        game.setEntityCoords(alt.Player.local.scriptID, playerPoint.x, playerPoint.y, playerPoint.z, false, false, false, false);
-        game.setEntityHeading(alt.Player.local.scriptID, 180);
+        let modelName = gender == 1 ? 'mp_f_freemode_01' : 'mp_m_freemode_01';
+        if (alt.Player.local.model != alt.hash(modelName))
+            alt.setModel(modelName);
+        //game.setEntityCoords(alt.Player.local.scriptID, playerPos.x, playerPos.y, playerPos.z, false, false, false, false);
+       // game.setEntityHeading(alt.Player.local.scriptID, 180);
 
         if (gender == 0)
             game.setPedHeadBlendData(alt.Player.local.scriptID, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
@@ -112,6 +128,10 @@ export function OpenCharCreator() {
         var p = JSON.parse(type);
         game.setPedHeadBlendData(alt.Player.local.scriptID, p.ShapeFirst, p.ShapeSecond, 0, p.SkinFirst, p.SkinSecond, 0, p.ShapeMix, p.SkinMix, 0, false);
     });
+
+    view.on('onmenuchange', (index: number) => {
+
+    })
 
     game.doScreenFadeIn(0);
 }
