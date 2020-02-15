@@ -84,7 +84,7 @@ export async function OpenCharCreator() {
         game.setPedComponentVariation(alt.Player.local.scriptID, type, index, 0, 0);
     })
 
-    view.on('saveCharacter', (first: string, second: string) => {
+    view.on('saveCharacter', (first: string/*, second: string*/) => {
         view.destroy();
         game.doScreenFadeOut(0);
         game.displayHud(true);
@@ -95,7 +95,7 @@ export async function OpenCharCreator() {
         camera.SetActiveCamera(false);
         camera.Destroy();
         alt.log('Sauvegarde du character');
-        alt.emitServer('MakePlayer', first, second);
+        alt.emitServer('MakePlayer', first/*, second*/);
     });
 
     view.on('setHairColor', (type: number, index: number) => {

@@ -1,6 +1,7 @@
 ﻿using AltV.Net.Elements.Entities;
 using FiveZ.Entities.Survivors;
 using MongoDB.Driver;
+using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace FiveZ.Entities
     {
         public static void Init()
         {
-            AltV.Net.Alt.OnClient<IPlayer, string>("MakePlayer", MakePlayer);
+            AltV.Net.Alt.OnClient<Survivor, string>("MakePlayer", MakePlayer);
         }
 
         public static async Task<SurvivorData> GetPlayerDatabase(ulong socialClub)
@@ -26,12 +27,19 @@ namespace FiveZ.Entities
             }
         }
 
-        private static void MakePlayer(IPlayer client, string charData)
+        private static void MakePlayer(Survivor client, string charData)
         {
             if (!client.Exists)
                 return;
 
+            client.SurvivorData = new SurvivorData();
+            client.SurvivorData.PlayerCustomization = JsonConvert.DeserializeObject<PlayerCustomization>(charData);
 
+            var locSpawn = SurvivorData.SpawnPoints[Utils.Util.RandomNumber(SurvivorData.SpawnPoints.Length)];
+            client.Position = locSpawn.Pos;
+            client.Rotation = locSpawn.Rot;
+
+            
         }
     }
 }
