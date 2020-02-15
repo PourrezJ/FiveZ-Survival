@@ -26,7 +26,7 @@ export function PositionInFront(position: Vector3, rotation: Vector3, distance: 
     return new alt.Vector3(position.x + scaledForwardVector.x, position.y + scaledForwardVector.y, position.z + scaledForwardVector.z);
 }
 
-export function loadModelAsync(model) {
+export function LoadModelAsync(model) {
     return new Promise((resolve, reject) => {
         if (typeof model === 'string') {
             model = game.getHashKey(model);
@@ -49,7 +49,7 @@ export function loadModelAsync(model) {
     });
 }
 
-export async function loadMovement(dict) {
+export async function LoadMovement(dict) {
     return new Promise(resolve => {
         game.requestAnimSet(dict);
 
@@ -61,4 +61,19 @@ export async function loadMovement(dict) {
             }
         }, 5);
     });
+}
+
+
+export function Distance(positionOne, positionTwo) {
+    return Math.sqrt(Math.pow(positionOne.x - positionTwo.x, 2) + Math.pow(positionOne.y - positionTwo.y, 2) + Math.pow(positionOne.z - positionTwo.z, 2));
+}
+
+export function GetCameraDirection() {
+    const heading = game.getGameplayCamRelativeHeading() + game.getEntityHeading(alt.Player.local.scriptID);
+    const pitch = game.getGameplayCamRot(0).x;
+    var x = -Math.sin(heading * Math.PI / 180.0);
+    var y = Math.cos(heading * Math.PI / 180.0);
+    var z = Math.sin(pitch * Math.PI / 180.0);
+
+    return new alt.Vector3(x, y, z);
 }

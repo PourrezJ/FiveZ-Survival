@@ -1,5 +1,7 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using AltV.Net.Async;
+using AltV.Net.Elements.Entities;
 using FiveZ.Entities.Survivors;
+using FiveZ.Utils.Extensions;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using System;
@@ -32,14 +34,14 @@ namespace FiveZ.Entities
             if (!client.Exists)
                 return;
 
-            client.SurvivorData = new SurvivorData();
-            client.SurvivorData.PlayerCustomization = JsonConvert.DeserializeObject<PlayerCustomization>(charData);
-
-            var locSpawn = SurvivorData.SpawnPoints[Utils.Util.RandomNumber(SurvivorData.SpawnPoints.Length)];
-            client.Position = locSpawn.Pos;
-            client.Rotation = locSpawn.Rot;
-
-            
+            Task.Run(async () => 
+            {
+                client.SurvivorData = new SurvivorData();
+                client.SurvivorData.PlayerCustomization = JsonConvert.DeserializeObject<PlayerCustomization>(charData);
+                client.SurvivorData.Location = SurvivorData.SpawnPoints[Utils.Util.RandomNumber(SurvivorData.SpawnPoints.Length)];
+                await Database.Mongodb.Insert("players", client.SurvivorData);
+                await AltAsync.Do(() => client.Load());
+            });
         }
     }
 }

@@ -3,7 +3,7 @@ import * as game from 'natives';
 import * as util from './utils/Util';
 import * as enums from './utils/Enums';
 //import * as chat from '../Chat/Chat';
-import { Camera } from './Camera';
+import { Camera } from './models/Camera';
 
 const playerPos: alt.Vector3 = {
     x: 1547.5,
@@ -34,9 +34,9 @@ export async function OpenCharCreator() {
     game.displayRadar(false);
     game.setMouseCursorSprite(6);
 
-    await util.loadModelAsync('mp_m_freemode_01');
-    await util.loadModelAsync('mp_f_freemode_01');
-    await util.loadMovement("move_ped_crouched");
+    await util.LoadModelAsync('mp_m_freemode_01');
+    await util.LoadModelAsync('mp_f_freemode_01');
+    await util.LoadMovement("move_ped_crouched");
 
     game.setEntityCoords(alt.Player.local.scriptID, playerPos.x, playerPos.y, playerPos.z, false, false, false, false);
     game.setEntityHeading(alt.Player.local.scriptID, 180);

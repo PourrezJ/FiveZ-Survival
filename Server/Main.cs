@@ -25,6 +25,7 @@ namespace FiveZ
             }
 
             SurvivorsManager.Init();
+            Streamer.Init();
 
             Console.WriteLine("Loaded FiveZ Server!");
         }

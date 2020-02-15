@@ -32,6 +32,9 @@
     <Reference Include="AltV.Net.Async">
       <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.Async.dll</HintPath>
     </Reference>
+    <Reference Include="AltV.Net.EntitySync">
+      <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.EntitySync.dll</HintPath>
+    </Reference>
     <Reference Include="AltV.Net.NetworkingEntity">
       <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.NetworkingEntity.dll</HintPath>
     </Reference>

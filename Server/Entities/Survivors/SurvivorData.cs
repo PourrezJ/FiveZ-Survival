@@ -1,4 +1,5 @@
 ﻿using FiveZ.Models;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace FiveZ.Entities.Survivors
 {
@@ -10,11 +11,12 @@ namespace FiveZ.Entities.Survivors
             new Location()
         };
 
-
+        [BsonId]
         public ulong SocialClub;
-        public uint Health;
-        public byte Hunger;
-        public byte Thirst;
+
+        public uint Health = 100;
+        public byte Hunger = 100;
+        public byte Thirst = 100;
 
         public Location Location;
         public PlayerCustomization PlayerCustomization;

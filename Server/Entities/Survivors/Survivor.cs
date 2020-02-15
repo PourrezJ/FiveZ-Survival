@@ -2,12 +2,13 @@
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
 using FiveZ.Entities.Survivors;
+using FiveZ.Utils.Extensions;
 using System;
 using System.Threading.Tasks;
 
 namespace FiveZ.Entities
 {
-    public class Survivor : Player
+    public partial class Survivor : Player
     {
         public SurvivorData SurvivorData;
 
@@ -22,26 +23,29 @@ namespace FiveZ.Entities
 
             Task.Run(async () =>
             {
-                if (!await this.ExistsAsync())
-                    return;
-
                 SurvivorData = await SurvivorsManager.GetPlayerDatabase(social);
 
                 await AltAsync.Do(() =>
                 {
-                    Spawn(new AltV.Net.Data.Position(0, 0, 70), 0);
+                    if (!Exists)
+                        return;
+
                     Model = (uint)PedModel.FreemodeMale01;
 
                     if (SurvivorData == null)
                     {
+                        Spawn(new AltV.Net.Data.Position(0, 0, 70), 0);
                         Emit("OpenCreator");
                         AltV.Net.Alt.Server.LogInfo("New player: " + social);
-                    }   
+                    }
+                    else
+                    {
+                        Spawn(SurvivorData.Location.Pos, 0);
+                        Rotation = SurvivorData.Location.Rot;
+                        this.FadeIn(500);        
+                    }
                 });
-            });
-           
-
-            
+            });        
         }
     }
 }

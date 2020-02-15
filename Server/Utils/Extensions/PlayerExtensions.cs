@@ -7,7 +7,11 @@ namespace FiveZ.Utils.Extensions
     {
         public static void SetDecoration(this IPlayer client, uint collection, uint overlay)
         {
+            // todo: permettre l'envoi d'une collection
             client.EmitLocked("DecorationVariation", collection, overlay);
         }
+
+        public static void FadeIn(this IPlayer client, int number) => client.EmitLocked("FadeIn", number);
+        public static void FadeOut(this IPlayer client, int number) => client.EmitLocked("FadeOut", number);
     }
 }

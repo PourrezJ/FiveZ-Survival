@@ -77,7 +77,10 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="client\Camera.ts" />
+    <TypeScriptCompile Include="client\Interactions.ts" />
+    <TypeScriptCompile Include="client\Survival.ts" />
+    <TypeScriptCompile Include="client\utils\APIExtends.ts" />
+    <TypeScriptCompile Include="client\models\Camera.ts" />
     <TypeScriptCompile Include="client\Creator.ts" />
     <TypeScriptCompile Include="client\includes\NativeUI\enums\Alignment.ts" />
     <TypeScriptCompile Include="client\includes\NativeUI\enums\BadgeStyle.ts" />
@@ -114,7 +117,15 @@
     <TypeScriptCompile Include="client\includes\NativeUI\utils\Size.ts" />
     <TypeScriptCompile Include="client\includes\NativeUI\utils\UUIDV4.ts" />
     <TypeScriptCompile Include="client\Main.ts" />
+    <TypeScriptCompile Include="client\models\HelpText.ts" />
+    <TypeScriptCompile Include="client\models\Loading.ts" />
+    <TypeScriptCompile Include="client\models\Scaleform.ts" />
+    <TypeScriptCompile Include="client\models\Subtitle.ts" />
+    <TypeScriptCompile Include="client\models\Time.ts" />
+    <TypeScriptCompile Include="client\models\UiHelper.ts" />
     <TypeScriptCompile Include="client\utils\Enums.ts" />
+    <TypeScriptCompile Include="client\utils\Globals.ts" />
+    <TypeScriptCompile Include="client\utils\Raycast.ts" />
     <TypeScriptCompile Include="client\utils\Util.ts" />
     <TypeScriptCompile Include="typings\alt.ts" />
     <TypeScriptCompile Include="typings\natives.d.ts" />

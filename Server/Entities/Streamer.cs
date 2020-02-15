@@ -1,6 +1,9 @@
-﻿using AltV.Net.NetworkingEntity;
+﻿using AltV.Net.EntitySync;
+using AltV.Net.EntitySync.SpatialPartitions;
+using AltV.Net.NetworkingEntity;
 using AltV.Net.NetworkingEntity.Elements.Entities;
 using FiveZ.Utils;
+using System;
 
 namespace FiveZ.Entities
 {
@@ -21,33 +24,12 @@ namespace FiveZ.Entities
             AltNetworking.OnEntityStreamOut = OnEntityStreamOut;
         }
 
-        private static void OnEntityStreamIn(INetworkingEntity entity, INetworkingClient client)
+        private static void OnEntityStreamOut(INetworkingEntity arg1, INetworkingClient arg2)
         {
-            /*
-            Ped ped = Ped.GetNPCbyID((int)entity.Id);
-            if (ped != null)
-            {
-                if (ped.Owner == null)
-                {
-                    var player = TokenToPlayer(client.Token);
-                    if (player != null)
-                    {
-                        lock (player)
-                        {
-                            ped.TaskWanderStandard(true);
-                        }
-                    }
-                }
-            }*/
         }
 
-        private static void OnEntityStreamOut(INetworkingEntity entity, INetworkingClient client)
+        private static void OnEntityStreamIn(INetworkingEntity arg1, INetworkingClient arg2)
         {
-            Ped ped = Ped.GetNPCbyID(entity.Id);
-            if (ped != null)
-            {
-                if (ped.Owner != null) ped.Owner = null;
-            }
         }
     }
 }
