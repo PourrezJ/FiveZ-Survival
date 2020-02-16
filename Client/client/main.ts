@@ -6,12 +6,12 @@ import { OpenCharCreator } from './Creator';
 import { Loading } from './models/Loading';
 import { Subtitle } from './models/Subtitle';
 import { HelpText } from './models/HelpText';
+import { PlayerCustomInterface, PlayerCustomization } from './models/PlayerCustomization';
 
 const init = async () => {
 
     apiext.initialize();
 
-    game.setAudioFlag('LoadMPData', true);
     game.setAudioFlag('DisableFlightMusic', true);
     game.setAudioFlag('PoliceScannerDisabled', true);
 
@@ -55,6 +55,12 @@ const init = async () => {
 
     alt.onServer('OpenCreator', () => {
         OpenCharCreator();
+    });
+
+    alt.onServer('ApplyCharacter', (data: string) => {
+        let char: PlayerCustomInterface = JSON.parse(data);
+        char = new PlayerCustomization(char.Gender, char.Parents, char.Features, char.Appearance, char.Decorations, char.Hair, char.EyeColor);
+        char.ApplyCharacter(alt.Player.local);
     });
 };
 

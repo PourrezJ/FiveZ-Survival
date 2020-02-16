@@ -40,6 +40,7 @@ namespace FiveZ.Entities
                     }
                     else
                     {
+                        SurvivorData.PlayerCustomization.ApplyCharacter(this);
                         Spawn(SurvivorData.Location.Pos, 0);
                         Rotation = SurvivorData.Location.Rot;
                         this.FadeIn(500);        

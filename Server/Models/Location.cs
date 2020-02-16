@@ -5,12 +5,18 @@ using System.Numerics;
 
 namespace FiveZ.Models
 {
-    public struct Location
+    public class Location
     {
         [JsonProperty("position"), BsonElement("pos")]
         public Vector3 Pos { get; set; }
         [JsonProperty("rotation"), BsonElement("rot")]
         public Vector3 Rot { get; set; }
+
+        public Location()
+        {
+            this.Pos = new Vector3();
+            this.Rot = new Vector3();
+        }
 
         public Location(Vector3 pos, Vector3 rot)
         {

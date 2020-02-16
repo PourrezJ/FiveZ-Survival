@@ -1,4 +1,5 @@
 ﻿using FiveZ.Models;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace FiveZ.Entities.Survivors
@@ -12,7 +13,7 @@ namespace FiveZ.Entities.Survivors
         };
 
         [BsonId]
-        public ulong SocialClub;
+        public ulong _id;
 
         public uint Health = 100;
         public byte Hunger = 100;
@@ -24,5 +25,10 @@ namespace FiveZ.Entities.Survivors
         //public Inventory InventoryData;
         //public Inventory BackPackData;
 
+
+        public SurvivorData(ulong socialID)
+        {
+            _id = socialID;
+        }
     }
 }

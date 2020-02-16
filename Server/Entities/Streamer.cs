@@ -11,6 +11,7 @@ namespace FiveZ.Entities
     {
         public static void Init()
         {
+            /*
             AltNetworking.Configure(options =>
             {
 
@@ -21,7 +22,7 @@ namespace FiveZ.Entities
             });
 
             AltNetworking.OnEntityStreamIn = OnEntityStreamIn;
-            AltNetworking.OnEntityStreamOut = OnEntityStreamOut;
+            AltNetworking.OnEntityStreamOut = OnEntityStreamOut;*/
         }
 
         private static void OnEntityStreamOut(INetworkingEntity arg1, INetworkingClient arg2)

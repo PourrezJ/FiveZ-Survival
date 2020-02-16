@@ -1,10 +1,6 @@
-﻿using AltV.Net;
-using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
-using FiveZ.Utils.Extensions;
-using System;
+﻿using AltV.Net.Elements.Entities;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FiveZ.Entities.Survivors
 {
@@ -92,27 +88,7 @@ namespace FiveZ.Entities.Survivors
                 if (!player.Exists)
                     return;
 
-                try
-                {
-                    player.Emit("HeadVariation", Parents.ShapeFirst, Parents.ShapeSecond, Parents.ShapeThird, Parents.SkinFirst, Parents.SkinSecond, Parents.SkinThird, Parents.ShapeMix, Parents.SkinMix, Parents.ThirdMix);
-
-                    for (int i = 0; i < Features.Length; i++)
-                        player.Emit("FaceFeatureVariation", i, Features[i]);
-
-                    for (int i = 0; i < Appearance.Length; i++)
-                        player.Emit("HeadOverlayVariation", Appearance[i].Index, Appearance[i].Opacity, Appearance[i].Color, Appearance[i].SecondaryColor, i);
-
-                    foreach (Decoration decoration in Decorations)
-                        player.SetDecoration(decoration.Collection, decoration.Overlay);
-
-                    player.Emit("EyeColorVariation", EyeColor);
-                    player.Emit("ComponentVariation", 2, Hair.Hair, 0, 0);
-                    player.Emit("HairVariation", Hair.Color, Hair.HighlightColor);
-                }
-                catch (Exception ex)
-                {
-                    Alt.Server.LogInfo("ApplyCharacter" + ex.Data);
-                }
+                player.Emit("ApplyCharacter", JsonConvert.SerializeObject(this));
             }
         }
 
