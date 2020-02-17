@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FiveZ.Entities.Survivors
+namespace FiveZ.Entities
 {
-    public partial class Survivor
+    public class VehicleData
     {
     }
 }

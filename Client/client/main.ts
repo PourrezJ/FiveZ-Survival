@@ -12,14 +12,19 @@ const init = async () => {
 
     apiext.initialize();
 
-    game.setAudioFlag('DisableFlightMusic', true);
-    game.setAudioFlag('PoliceScannerDisabled', true);
-
     for (var i: number = 0; i <= 5; i++)
         game.disableHospitalRestart(i, true);
 
     game.setPlayerHealthRechargeMultiplier(alt.Player.local.scriptID, 0);
     game.startAudioScene("FBI_HEIST_H5_MUTE_AMBIENCE_SCENE");
+    game.cancelCurrentPoliceReport();
+    game.clearAmbientZoneState("AZ_COUNTRYSIDE_PRISON_01_ANNOUNCER_GENERAL", true);
+    game.clearAmbientZoneState("AZ_COUNTRYSIDE_PRISON_01_ANNOUNCER_WARNING", true);
+    game.clearAmbientZoneState("AZ_COUNTRYSIDE_PRISON_01_ANNOUNCER_ALARM", true);
+    game.clearAmbientZoneState("AZ_DISTANT_SASQUATCH", false);
+    game.setAudioFlag("LoadMPData", true);
+    game.setAudioFlag("DisableFlightMusic", true);
+    game.setAudioFlag('PoliceScannerDisabled', true);
 
     game.setPedConfigFlag(alt.Player.local.scriptID, 35, false);
     game.setPedConfigFlag(alt.Player.local.scriptID, 184, false);
@@ -38,6 +43,9 @@ const init = async () => {
 
 
     alt.everyTick(() => {
+        if (game.isPauseMenuActive())
+            return;
+
         game.drawRect(0, 0, 0, 0, 0, 0, 0, 0, false);
 
         if (Loading.loading != null)
@@ -51,6 +59,21 @@ const init = async () => {
             game.disableControlAction(2, i, true);
 
         disableSeatShuffle();
+        interaction.onTick();
+    });
+
+    alt.on('keyup', (key) => {
+        if (game.isPauseMenuActive())
+            return;
+
+        interaction.onKeyUp(key);
+    });
+
+    alt.on('keydown', (key) => {
+        if (game.isPauseMenuActive())
+            return;
+
+        interaction.onKeyDown(key);
     });
 
     alt.onServer('OpenCreator', () => {

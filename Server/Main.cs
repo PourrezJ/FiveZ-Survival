@@ -2,6 +2,7 @@
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using FiveZ.Entities;
+using FiveZ.Entities.Survivors;
 using System;
 
 namespace FiveZ
@@ -25,6 +26,7 @@ namespace FiveZ
             }
 
             SurvivorsManager.Init();
+            PlayerKeyHandler.Init();
             Streamer.Init();
 
             Console.WriteLine("Loaded FiveZ Server!");
