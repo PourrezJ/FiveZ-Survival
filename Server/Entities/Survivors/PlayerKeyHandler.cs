@@ -45,6 +45,12 @@ namespace FiveZ.Entities.Survivors
 
             switch (key)
             {
+                case ConsoleKey.F2:
+                    if (!client.HasOpenMenu())
+                        client.OpenPlayerMenu();
+
+                    break;
+
                 default:
 
                     break;

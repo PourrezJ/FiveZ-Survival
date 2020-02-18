@@ -72,6 +72,7 @@ export default class NativeUI {
     private readonly _descriptionText: ResText;
     private readonly _counterText: ResText;
     private readonly _background: Sprite;
+    private readonly _bannerColor: Color;
 
     public readonly Id: string = UUIDV4();
     public readonly SelectTextLocalized: string = alt.getGxtText("HUD_INPUT2");
@@ -105,6 +106,7 @@ export default class NativeUI {
     public readonly MenuOpen = new LiteEvent();
     public readonly MenuClose = new LiteEvent();
     public readonly MenuChange = new LiteEvent();
+    public readonly MenuBack = new LiteEvent();
 
     public GetSpriteBanner(): Sprite {
         return this._bannerSprite;
@@ -223,11 +225,12 @@ export default class NativeUI {
         this.UpdateDescriptionCaption();
     }
 
-    constructor(title: string, subtitle: string, offset: Point, spriteLibrary?: string, spriteName?: string) {
+    constructor(title: string, subtitle: string, offset: Point, spriteLibrary?: string, spriteName?: string, bannerColor?: Color) {
         if (!(offset instanceof Point)) offset = Point.Parse(offset);
 
         this._spriteLibrary = spriteLibrary || "commonmenu";
         this._spriteName = spriteName || "interaction_bgd";
+        this._bannerColor = bannerColor;
         this._offset = new Point(offset.X, offset.Y);
         this.Children = new Map();
 
@@ -236,7 +239,7 @@ export default class NativeUI {
 
         // Create everything
         this._mainMenu = new Container(new Point(0, 0), new Size(700, 500), new Color(0, 0, 0, 0));
-        this._bannerSprite = new Sprite(this._spriteLibrary, this._spriteName, new Point(0 + this._offset.X, 0 + this._offset.Y), new Size(431, 107));
+        this._bannerSprite = new Sprite(this._spriteLibrary, this._spriteName, new Point(0 + this._offset.X, 0 + this._offset.Y), new Size(431, 107), 0, this._bannerColor);
         this._mainMenu.addItem(
             (this._titleResText = new ResText(title, new Point(215 + this._offset.X, 20 + this._offset.Y), this._defaultTitleScale, new Color(255, 255, 255), 1, Alignment.Centered))
         );
@@ -788,16 +791,16 @@ export default class NativeUI {
     }
 
     public GoBack() {
+        Common.PlaySound(this.AUDIO_BACK, this.AUDIO_LIBRARY);
         if (this.ParentMenu != null) {
             this.Visible = false;
             this.ParentMenu.Visible = true;
             this.MenuChange.emit(this.ParentMenu, false);
-            this.MenuClose.emit(false);
         } else if (this.CloseableByUser) {
             this.Visible = false;
             this.CleanUp(true);
-            this.MenuClose.emit(false);
         }
+        this.MenuBack.emit();
     }
 
     public BindMenuToItem(menuToBind: NativeUI, itemToBindTo: UIMenuItem) {

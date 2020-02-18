@@ -27,6 +27,7 @@ namespace FiveZ
                 return;
             }
 
+            MenuManager.Init();
             VehiclesManager.Init();
             SurvivorsManager.Init();
             PlayerKeyHandler.Init();

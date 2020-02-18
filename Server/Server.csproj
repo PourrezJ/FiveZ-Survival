@@ -40,4 +40,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="MenuManager\" />
+  </ItemGroup>
+
 </Project>

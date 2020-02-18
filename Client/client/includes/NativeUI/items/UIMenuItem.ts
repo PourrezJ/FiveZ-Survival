@@ -64,9 +64,12 @@ export default class UIMenuItem {
     public LeftBadge: BadgeStyle = BadgeStyle.None;
     public RightBadge: BadgeStyle = BadgeStyle.None;
 
-    constructor(text: string, description = "", data: any = null) {
+    constructor(text: string, description = "", backColor = UIMenuItem.DefaultBackColor, highlightColor = UIMenuItem.DefaultHighlightedBackColor, data: any = null) {
         this.Enabled = true;
         this.Data = data;
+
+        this.BackColor = backColor;
+        this.HighlightedBackColor = highlightColor;
 
         this._rectangle = new ResRectangle(new Point(0, 0), new Size(431, 38), new Color(150, 0, 0, 0));
         this._text = new ResText(text, new Point(8, 0), 0.33, Color.WhiteSmoke, Font.ChaletLondon, Alignment.Left);

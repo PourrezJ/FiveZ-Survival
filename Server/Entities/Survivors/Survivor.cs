@@ -1,12 +1,11 @@
 ﻿using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
-using FiveZ.Entities.Survivors;
 using FiveZ.Utils.Extensions;
 using System;
 using System.Threading.Tasks;
 
-namespace FiveZ.Entities
+namespace FiveZ.Entities.Survivors
 {
     public partial class Survivor : Player
     {
@@ -48,5 +47,22 @@ namespace FiveZ.Entities
                 });
             });        
         }
+
+        public bool HasOpenMenu()
+        {
+            /*
+            if (XMenuManager.XMenuManager.HasOpenMenu(Client))
+                return true;
+                */
+            if (MenuManager.HasOpenMenu(this))
+                return true;
+            /*
+            if (RPGInventoryManager.HasInventoryOpen(Client))
+                return true;
+            */
+            return false;
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
+using FiveZ.Entities.Survivors;
 using System;
 
 namespace FiveZ.Entities

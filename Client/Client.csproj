@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="client\Interactions.ts" />
+    <TypeScriptCompile Include="client\MenuManager.ts" />
     <TypeScriptCompile Include="client\models\PlayerCustomization.ts" />
     <TypeScriptCompile Include="client\Streamer.ts" />
     <TypeScriptCompile Include="client\Survival.ts" />
