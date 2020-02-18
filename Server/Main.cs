@@ -4,13 +4,13 @@ using AltV.Net.Elements.Entities;
 using FiveZ.Entities;
 using FiveZ.Entities.Survivors;
 using System;
+using System.Threading;
 
 namespace FiveZ
 {
     class Main : AsyncResource
     {
-        public const int GlobalDimension = 0;
-        public const float StreamDistance = 500;
+        public static int MainThreadId { get; private set; }
 
         public Main()
         {
@@ -19,12 +19,15 @@ namespace FiveZ
 
         public override void OnStart()
         {
-            if (!Database.Mongodb.Init())
+            MainThreadId = Thread.CurrentThread.ManagedThreadId;
+
+            if (!Database.MongoDB.Init())
             {
                 Alt.Server.LogError("MongoDB loading error.");
                 return;
             }
 
+            VehiclesManager.Init();
             SurvivorsManager.Init();
             PlayerKeyHandler.Init();
             Streamer.Init();

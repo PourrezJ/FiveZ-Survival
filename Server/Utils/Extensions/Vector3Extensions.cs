@@ -57,7 +57,6 @@ namespace FiveZ.Utils.Extensions
         public static Vector3 Subtract(this Vector3 left, Vector3 right) => new Vector3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
 
         public static Position ConvertToPosition(this Vector3 pos) =>  new Position { X = pos.X, Y=pos.Y, Z=pos.Z };
-        public static Entity.Position ConvertToEntityPosition(this Vector3 pos) =>  new Entity.Position { X = pos.X, Y=pos.Y, Z=pos.Z };
 
         public static Vector3 ConvertRotationToRadian(this Vector3 rot) 
         {
@@ -70,8 +69,6 @@ namespace FiveZ.Utils.Extensions
         public static Rotation ConvertToEntityRotation(this Vector3 pos) => new Rotation(pos.X, pos.Y, pos.Z );
 
         public static Vector3 ConvertToVector3(this Position pos) => new Vector3(pos.X, pos.Y, pos.Z);
-
-        public static Entity.Position ConvertToEntityPosition(this Position pos) => new Entity.Position { X = pos.X, Y = pos.Y, Z = pos.Z };
 
        // public static Vector3Serialized ConvertToVector3Serialized(this Vector3 pos) => new Vector3Serialized(pos);
     }

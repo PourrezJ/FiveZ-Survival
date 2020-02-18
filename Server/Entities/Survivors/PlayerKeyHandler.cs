@@ -1,6 +1,5 @@
 ﻿using AltV.Net;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using FiveZ.Models;
 using Newtonsoft.Json;
 using System;
@@ -24,7 +23,9 @@ namespace FiveZ.Entities.Survivors
 
             switch (key)
             {
+                default:
 
+                    break;
             }
         }
 
@@ -37,14 +38,16 @@ namespace FiveZ.Entities.Survivors
             Position playerPos = client.Position;
             ConsoleKey key = (ConsoleKey)key64;
 
-            Ped pnj = null;
+
 
             //if (raycastData.entityType == 1)
                // pnj = Ped.NPCList.Find(p => p.Position.Distance(raycastData.pos) <= Globals.MAX_INTERACTION_DISTANCE && p.Model == (AltV.Net.Enums.PedModel)raycastData.entityHash);
 
             switch (key)
             {
+                default:
 
+                    break;
             }
         }
     }

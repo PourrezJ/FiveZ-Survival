@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace FiveZ.Database
 {
-    public static class Mongodb
+    public static class MongoDB
     {
         #region Private static variables
         private static IMongoClient _client;

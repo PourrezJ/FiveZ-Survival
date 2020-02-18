@@ -18,10 +18,16 @@
   </Target>
 
   <ItemGroup>
+    <None Remove="Entities\Entity.cs bk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AltV.Net.EntitySync" Version="1.0.20-dev-preview" />
+    <PackageReference Include="AltV.Net.EntitySync.ServerEvent" Version="1.0.19-dev-preview" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
-    <PackageReference Include="MongoDB.Driver" Version="2.10.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
@@ -31,12 +37,6 @@
     </Reference>
     <Reference Include="AltV.Net.Async">
       <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.Async.dll</HintPath>
-    </Reference>
-    <Reference Include="AltV.Net.EntitySync">
-      <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.EntitySync.dll</HintPath>
-    </Reference>
-    <Reference Include="AltV.Net.NetworkingEntity">
-      <HintPath>..\..\..\..\..\..\AltV\server-files\resources\fivez\server\AltV.Net.NetworkingEntity.dll</HintPath>
     </Reference>
   </ItemGroup>
 

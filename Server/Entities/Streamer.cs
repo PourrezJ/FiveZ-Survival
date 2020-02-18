@@ -1,36 +1,43 @@
 ﻿using AltV.Net.EntitySync;
+using AltV.Net.EntitySync.ServerEvent;
 using AltV.Net.EntitySync.SpatialPartitions;
-using AltV.Net.NetworkingEntity;
-using AltV.Net.NetworkingEntity.Elements.Entities;
-using FiveZ.Utils;
-using System;
+using AltV.Net.Enums;
+using System.Numerics;
 
 namespace FiveZ.Entities
 {
+    public enum StreamerType
+    {
+        Marker,
+        Ped,
+    }
+
     public static class Streamer
     {
         public static void Init()
         {
-            /*
-            AltNetworking.Configure(options =>
+            AltEntitySync.Init(1, 100,
+               repository => new ServerEventNetworkLayer(repository),
+               () => new LimitedGrid3(50_000, 50_000, 100, 10_000, 10_000, 600),
+               new IdProvider());
+        }
+    }
+
+    public class Ped : Entity
+    {
+        private PedModel model;
+        public PedModel Model
+        {
+            get => model;
+            set
             {
-
-                if (!string.IsNullOrEmpty(Config.GetSetting<string>("StreamerIP")))
-                    options.Ip = Config.GetSetting<string>("StreamerIP");
-
-                options.Port = 46429;
-            });
-
-            AltNetworking.OnEntityStreamIn = OnEntityStreamIn;
-            AltNetworking.OnEntityStreamOut = OnEntityStreamOut;*/
+                model = value;
+                SetData("Model", value);
+            }
         }
 
-        private static void OnEntityStreamOut(INetworkingEntity arg1, INetworkingClient arg2)
+        public Ped(PedModel model, Vector3 position, int dimension, uint range, ulong type = (ulong)StreamerType.Ped) : base(type, position, dimension, range)
         {
-        }
-
-        private static void OnEntityStreamIn(INetworkingEntity arg1, INetworkingClient arg2)
-        {
-        }
+        } 
     }
 }

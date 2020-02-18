@@ -2,6 +2,7 @@
 import * as game from 'natives';
 import * as apiext from './utils/ApiExtends';
 import * as interaction from './Interactions';
+import * as streamer from './Streamer';
 import { OpenCharCreator } from './Creator';
 import { Loading } from './models/Loading';
 import { Subtitle } from './models/Subtitle';
@@ -11,6 +12,7 @@ import { PlayerCustomInterface, PlayerCustomization } from './models/PlayerCusto
 const init = async () => {
 
     apiext.initialize();
+    streamer.initialize();
 
     for (var i: number = 0; i <= 5; i++)
         game.disableHospitalRestart(i, true);
@@ -60,6 +62,7 @@ const init = async () => {
 
         disableSeatShuffle();
         interaction.onTick();
+        streamer.onTick();
     });
 
     alt.on('keyup', (key) => {

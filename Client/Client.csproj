@@ -79,6 +79,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="client\Interactions.ts" />
     <TypeScriptCompile Include="client\models\PlayerCustomization.ts" />
+    <TypeScriptCompile Include="client\Streamer.ts" />
     <TypeScriptCompile Include="client\Survival.ts" />
     <TypeScriptCompile Include="client\utils\APIExtends.ts" />
     <TypeScriptCompile Include="client\models\Camera.ts" />

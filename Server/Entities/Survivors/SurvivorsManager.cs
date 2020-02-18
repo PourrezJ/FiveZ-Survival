@@ -20,7 +20,7 @@ namespace FiveZ.Entities
         {
             try
             {
-                return await Database.Mongodb.GetCollectionSafe<SurvivorData>("players").Find(p => p._id == socialClub).FirstOrDefaultAsync();
+                return await Database.MongoDB.GetCollectionSafe<SurvivorData>("players").Find(p => p._id == socialClub).FirstOrDefaultAsync();
             }
             catch(Exception ex)
             {
@@ -41,7 +41,7 @@ namespace FiveZ.Entities
                 client.SurvivorData = new SurvivorData(socialID);
                 client.SurvivorData.PlayerCustomization = JsonConvert.DeserializeObject<PlayerCustomization>(charData);
                 client.SurvivorData.Location = SurvivorData.SpawnPoints[Utils.Util.RandomNumber(SurvivorData.SpawnPoints.Length)];
-                await Database.Mongodb.Insert("players", client.SurvivorData);
+                await Database.MongoDB.Insert("players", client.SurvivorData);
                 await AltAsync.Do(() => client.Load());
             });
         }
