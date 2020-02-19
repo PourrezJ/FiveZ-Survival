@@ -4,6 +4,8 @@ import * as apiext from './utils/ApiExtends';
 import * as interaction from './Interactions';
 import * as streamer from './Streamer';
 import * as menuManager from './MenuManager';
+import * as wheelManager from './WheelMenuManager';
+import * as vehicle from './Vehicle';
 import { OpenCharCreator } from './Creator';
 import { Loading } from './models/Loading';
 import { Subtitle } from './models/Subtitle';
@@ -15,6 +17,8 @@ const init = async () => {
     apiext.initialize();
     streamer.initialize();
     menuManager.initialize();
+    wheelManager.initialize();
+    vehicle.initialize();
 
     for (var i: number = 0; i <= 5; i++)
         game.disableHospitalRestart(i, true);

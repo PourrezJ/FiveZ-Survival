@@ -57,7 +57,6 @@ namespace FiveZ.Database
             ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
 
             BsonSerializer.RegisterSerializer(typeof(Vector3), new VectorSerializer());
-            //BsonSerializer.RegisterSerializer(typeof(ClothData), new ClothDataSerializer());
             BsonSerializer.RegisterSerializer(typeof(Color), new ColorBsonSerializer());
 
             BsonClassMap.RegisterClassMap<Location>(cm =>

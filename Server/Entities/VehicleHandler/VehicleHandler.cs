@@ -2,6 +2,7 @@
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
 using FiveZ.Models;
+using FiveZ.Utils.Extensions;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -48,6 +49,21 @@ namespace FiveZ.Entities
 
         public VehicleHandler(uint model, Position position, Rotation rotation) : base(model, position, rotation)
         {
+        }
+        #endregion
+
+        #region Methods
+        public VehicleDoorState GetDoorState(VehicleDoor door) => VehicleData.Doors[(byte)door];
+
+        public void SetDoorState(IPlayer player, VehicleDoor door, VehicleDoorState state)
+        {
+            VehicleData.Doors[(byte)door] = state;
+
+            if (!Exists)
+                return;
+
+            this.SetDoorStateFix(player, door, state, false);
+            //Vehicle.SetDoorState(door, state);
         }
         #endregion
     }

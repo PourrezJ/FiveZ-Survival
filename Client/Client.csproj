@@ -130,6 +130,8 @@
     <TypeScriptCompile Include="client\utils\Globals.ts" />
     <TypeScriptCompile Include="client\utils\Raycast.ts" />
     <TypeScriptCompile Include="client\utils\Util.ts" />
+    <TypeScriptCompile Include="client\Vehicle.ts" />
+    <TypeScriptCompile Include="client\WheelMenuManager.ts" />
     <TypeScriptCompile Include="typings\alt.ts" />
     <TypeScriptCompile Include="typings\natives.d.ts" />
   </ItemGroup>
@@ -187,6 +189,9 @@
     <Content Include="cef\charcreator\js\app.js" />
     <Content Include="cef\charcreator\js\char_data.js" />
     <Content Include="cef\charcreator\tmpl\ListProperty.html" />
+    <Content Include="cef\wheelmenu\css\style.css" />
+    <Content Include="cef\wheelmenu\js\app.js" />
+    <Content Include="cef\wheelmenu\index.html" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

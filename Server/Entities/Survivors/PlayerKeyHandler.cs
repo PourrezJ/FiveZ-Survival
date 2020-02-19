@@ -38,8 +38,6 @@ namespace FiveZ.Entities.Survivors
             Position playerPos = client.Position;
             ConsoleKey key = (ConsoleKey)key64;
 
-
-
             //if (raycastData.entityType == 1)
                // pnj = Ped.NPCList.Find(p => p.Position.Distance(raycastData.pos) <= Globals.MAX_INTERACTION_DISTANCE && p.Model == (AltV.Net.Enums.PedModel)raycastData.entityHash);
 
@@ -49,6 +47,15 @@ namespace FiveZ.Entities.Survivors
                     if (!client.HasOpenMenu())
                         client.OpenPlayerMenu();
 
+                    break;
+
+                case ConsoleKey.F3:
+                    if (client.HasOpenMenu())
+                        return;
+
+                    if (client.Vehicle != null && client.Vehicle.Exists)
+                        ((VehicleHandler)client.Vehicle).OpenXtremMenu(client);
+                    
                     break;
 
                 default:

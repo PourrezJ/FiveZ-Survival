@@ -1,6 +1,6 @@
-﻿using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+﻿using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
+using FiveZ.Chat;
 using FiveZ.Utils.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -24,7 +24,7 @@ namespace FiveZ.Entities.Survivors
             {
                 SurvivorData = await SurvivorsManager.GetPlayerDatabase(social);
 
-                await AltAsync.Do(() =>
+                lock (this)
                 {
                     if (!Exists)
                         return;
@@ -42,9 +42,10 @@ namespace FiveZ.Entities.Survivors
                         SurvivorData.PlayerCustomization.ApplyCharacter(this);
                         Spawn(SurvivorData.Location.Pos, 0);
                         Rotation = SurvivorData.Location.Rot;
-                        this.FadeIn(500);        
+                        this.FadeIn(500);
                     }
-                });
+                    this.SendChatMessage("bite");
+                }
             });        
         }
 

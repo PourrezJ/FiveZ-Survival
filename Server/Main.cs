@@ -3,12 +3,13 @@ using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using FiveZ.Entities;
 using FiveZ.Entities.Survivors;
+using FiveZ.Utils;
 using System;
 using System.Threading;
 
 namespace FiveZ
 {
-    class Main : AsyncResource
+    public class Main : AsyncResource
     {
         public static int MainThreadId { get; private set; }
 
@@ -24,9 +25,11 @@ namespace FiveZ
             if (!Database.MongoDB.Init())
             {
                 Alt.Server.LogError("MongoDB loading error.");
+                Util.Delay(30000, () => Environment.Exit(0));
                 return;
             }
 
+            WheelMenuManager.Init();
             MenuManager.Init();
             VehiclesManager.Init();
             SurvivorsManager.Init();
