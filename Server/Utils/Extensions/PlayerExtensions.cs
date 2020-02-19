@@ -14,6 +14,6 @@ namespace FiveZ.Utils.Extensions
         public static void FadeIn(this IPlayer client, int number) => client.EmitLocked("FadeIn", number);
         public static void FadeOut(this IPlayer client, int number) => client.EmitLocked("FadeOut", number);
 
-        public static void SendChatMessage(this IPlayer player, string message) => player.EmitLocked("chatmessage", null, message);
+        public static void SendChatMessage(this IPlayer player, string message) => player.EmitLocked("chat:message", null, message);
     }
 }

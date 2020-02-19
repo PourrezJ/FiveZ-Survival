@@ -1,7 +1,8 @@
 ﻿import * as alt from 'alt-client';
 import * as game from 'natives';
+import { Ped } from './models/Ped';
 
-let Entities: Array<Entity>
+let Entities: Array<any> = new Array<any>();
 
 export class Entity {
 
@@ -18,7 +19,6 @@ export function initialize()
         alt.log(entity.id);
         alt.log(entity.type);
         alt.log(entity.position);
-        alt.log(entity.data);
 
         switch (entity.type) {
             case 0:
@@ -27,10 +27,9 @@ export function initialize()
 
             case 1:
                 //Ped
+                Entities[entity.id] = new Ped(entity.id, entity.data.Model, entity.position, 0);
                 break;
         }
-
-        Entities[entity.id] = entity;
     })
 
     alt.onServer("entitySync:remove", (entityId: number) => {

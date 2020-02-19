@@ -11,6 +11,11 @@ namespace FiveZ.Entities.Survivors
     {
         public SurvivorData SurvivorData;
 
+        public DateTime LastUpdate;
+
+        public int TimeSpent;
+
+
         public Survivor(IntPtr nativePointer, ushort id) : base(nativePointer, id)
         {
             Load();
@@ -42,19 +47,18 @@ namespace FiveZ.Entities.Survivors
                         SurvivorData.PlayerCustomization.ApplyCharacter(this);
                         Spawn(SurvivorData.Location.Pos, 0);
                         Rotation = SurvivorData.Location.Rot;
+                        Dimension = Globals.GLOBAL_DIMENSION;
                         this.FadeIn(500);
                     }
-                    this.SendChatMessage("bite");
                 }
             });        
         }
 
         public bool HasOpenMenu()
         {
-            /*
-            if (XMenuManager.XMenuManager.HasOpenMenu(Client))
+            if (WheelMenuManager.HasOpenMenu(this))
                 return true;
-                */
+                
             if (MenuManager.HasOpenMenu(this))
                 return true;
             /*
@@ -63,7 +67,5 @@ namespace FiveZ.Entities.Survivors
             */
             return false;
         }
-
-
     }
 }

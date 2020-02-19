@@ -1,6 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
 using FiveZ.Chat;
+using FiveZ.Entities;
 
 namespace FiveZ
 {
@@ -10,7 +11,16 @@ namespace FiveZ
         public void testCMD(IPlayer player)
         {
             if (player == null || !player.Exists) return;
-            Alt.Log("hello world");
+
+            new Ped(AltV.Net.Enums.PedModel.Abigail, player.Position, 0, 500);
+        }
+
+        [Command("revive")]
+        public void Revive(IPlayer player)
+        {
+            if (player == null || !player.Exists) return;
+
+            player.Spawn(player.Position, 15000);
         }
     }
 }

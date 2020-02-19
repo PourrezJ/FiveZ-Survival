@@ -1,4 +1,5 @@
-﻿using AltV.Net.Async;
+﻿using AltV.Net;
+using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using FiveZ.Entities.Survivors;
 using FiveZ.Utils.Extensions;
@@ -13,7 +14,27 @@ namespace FiveZ.Entities
     {
         public static void Init()
         {
-            AltV.Net.Alt.OnClient<Survivor, string>("MakePlayer", MakePlayer);
+            Alt.OnClient<Survivor, string>("MakePlayer", MakePlayer);
+
+            Utils.Util.SetInterval(async () =>
+            {
+                await AltAsync.Do(() =>
+                {
+                    var players = Alt.GetAllPlayers();
+                    lock (players)
+                    {
+                        foreach (var player in players)
+                        {
+                            Survivor survivor = player as Survivor;
+
+                            if (survivor == null)
+                                continue;
+
+                            survivor.UpdateFull();
+                        }
+                    }
+                });
+            }, 500);
         }
 
         public static async Task<SurvivorData> GetPlayerDatabase(ulong socialClub)

@@ -22,22 +22,4 @@ namespace FiveZ.Entities
                new IdProvider());
         }
     }
-
-    public class Ped : Entity
-    {
-        private PedModel model;
-        public PedModel Model
-        {
-            get => model;
-            set
-            {
-                model = value;
-                SetData("Model", value);
-            }
-        }
-
-        public Ped(PedModel model, Vector3 position, int dimension, uint range, ulong type = (ulong)StreamerType.Ped) : base(type, position, dimension, range)
-        {
-        } 
-    }
 }
