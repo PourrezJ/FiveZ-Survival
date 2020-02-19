@@ -7,6 +7,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace FiveZ.Entities
 {
@@ -75,7 +76,10 @@ namespace FiveZ.Entities
 
             int fuel = Util.RandomNumber(100);
 
-            SpawnVehicle(0, model, locRandom.Pos, locRandom.Rot, color1, color2, fuel, 100, locked: false);
+            var veh = SpawnVehicle(0, model, locRandom.Pos, locRandom.Rot, color1, color2, fuel, 100, locked: false);
+
+            if (!veh.SpawnVeh)
+                veh.VehicleData.InsertVehicle();
         }
 
         public static string GenerateRandomPlate()

@@ -34,7 +34,7 @@ namespace FiveZ.Entities
                         }
                     }
                 });
-            }, 500);
+            }, 30000);
         }
 
         public static async Task<SurvivorData> GetPlayerDatabase(ulong socialClub)

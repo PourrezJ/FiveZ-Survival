@@ -66,7 +66,7 @@ namespace FiveZ.Entities
 
                     await AltAsync.Do(()
                         => VehicleData.UpdateProperties());
-                    var result = await Database.MongoDB.Update(this.VehicleData, "vehicles", VehicleData.Plate, _nbUpdateRequests);
+                    var result = await Database.MongoDB.Update(this.VehicleData, "vehicles", VehicleData.Plate);
 
                     if (result.ModifiedCount == 0)
                         Alt.Server.LogError($"Update error for vehicle: {VehicleData.Plate} - Owner: {VehicleData.OwnerID}");

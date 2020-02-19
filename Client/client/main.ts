@@ -33,6 +33,8 @@ const init = async () => {
     game.setAudioFlag("LoadMPData", true);
     game.setAudioFlag("DisableFlightMusic", true);
     game.setAudioFlag('PoliceScannerDisabled', true);
+    game.pauseClock(true);
+    game.setClockTime(8, 0, 0);
 
     game.setPedConfigFlag(alt.Player.local.scriptID, 35, false);
     game.setPedConfigFlag(alt.Player.local.scriptID, 184, false);

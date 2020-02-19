@@ -69,11 +69,12 @@ namespace FiveZ.Database
             return _client.Cluster.Description.State == ClusterState.Connected;
         }
 
-        public async static Task Insert<T>(string collectionName, T objet, [System.Runtime.CompilerServices.CallerMemberName] string caller = "", [System.Runtime.CompilerServices.CallerFilePath] string file = "", [System.Runtime.CompilerServices.CallerLineNumber] int line = 0)
+        public async static Task Insert<T>(string collectionName, T objet)
         {
             try
             {
-                await GetCollectionSafe<T>(collectionName).InsertOneAsync(objet);
+                var collection = GetCollectionSafe<T>(collectionName);
+                await collection.InsertOneAsync(objet);
             }
             catch (MongoWriteException be)
             {
@@ -81,13 +82,14 @@ namespace FiveZ.Database
             }
         }
 
-        public async static Task<ReplaceOneResult> Update<T>(T objet, string collectionName, object ID, int requests = 1, [System.Runtime.CompilerServices.CallerMemberName] string caller = "", [System.Runtime.CompilerServices.CallerFilePath] string file = "", [System.Runtime.CompilerServices.CallerLineNumber] int line = 0)
+        public async static Task<ReplaceOneResult> Update<T>(T objet, string collectionName, object ID)
         {
             try
             {
-                return await GetCollectionSafe<T>(collectionName).ReplaceOneAsync(Builders<T>.Filter.Eq("_id", ID), objet);
+                var collection = GetCollectionSafe<T>(collectionName);
+                return await collection.ReplaceOneAsync(Builders<T>.Filter.Eq("_id", ID), objet);
             }
-            catch (BsonException be)
+            catch (Exception be)
             {
                 Alt.Server.LogError(be.Message);
             }
@@ -95,11 +97,12 @@ namespace FiveZ.Database
             return null;
         }
 
-        public async static Task<DeleteResult> Delete<T>(string collectionName, object ID, [System.Runtime.CompilerServices.CallerMemberName] string caller = "", [System.Runtime.CompilerServices.CallerFilePath] string file = "", [System.Runtime.CompilerServices.CallerLineNumber] int line = 0)
+        public async static Task<DeleteResult> Delete<T>(string collectionName, object ID)
         {
             try
             {
-                return await _database.GetCollection<T>(collectionName).DeleteOneAsync(Builders<T>.Filter.Eq("_id", ID));
+                var collection = GetCollectionSafe<T>(collectionName);
+                return await collection.DeleteOneAsync(Builders<T>.Filter.Eq("_id", ID));
             }
             catch (BsonException be)
             {
@@ -115,21 +118,6 @@ namespace FiveZ.Database
                 _database.CreateCollection(collectionName);
 
             return _database.GetCollection<T>(collectionName);
-        }
-
-        public static bool CollectionExist<T>(string collectionName)
-        {
-
-            if (_database == null)
-                return false;
-
-            if (_database.GetCollection<T>(collectionName) == null)
-                return false;
-
-            if (_database.GetCollection<T>(collectionName).CountDocuments(new BsonDocument()) == 0)
-                return false;
-
-            return true;
         }
 
         public static IMongoDatabase GetMongoDatabase() => _database;

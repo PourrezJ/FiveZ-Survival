@@ -53,8 +53,6 @@ namespace FiveZ.Entities
 
         public ulong OwnerID { get; set; } 
 
-        public bool IsParked;
-
         public bool IsInPound;
 
         public DateTime LastUse = DateTime.Now;
