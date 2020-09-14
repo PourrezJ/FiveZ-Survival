@@ -4,82 +4,51 @@ using System.Collections.Generic;
 
 namespace FiveZ.Entities.Survivors
 {
-    public class HairData
+    public class ColorOverlay
     {
-        public int Hair;
-        public int Color;
-        public int HighlightColor;
-
-        public HairData(byte hair, byte color, byte highlightcolor)
-        {
-            Hair = hair;
-            Color = color;
-            HighlightColor = highlightcolor;
-        }
+        public int color1 { get; set; }
+        public int opacity { get; set; }
+        public int color2 { get; set; }
+        public int id { get; set; }
+        public int value { get; set; }
     }
 
-    public class HeadBlend
+    public class HairOverlay
     {
-        public int ShapeFirst;
-        public int ShapeSecond;
-        public int ShapeThird;
-        public int SkinFirst;
-        public int SkinSecond;
-        public int SkinThird;
-
-        public float ShapeMix;
-        public float SkinMix;
-        public float ThirdMix;
+        public string collection { get; set; }
+        public string overlay { get; set; }
     }
 
-    public class HeadOverlay
+    public class OpacityOverlay
     {
-        public int Index;
-        public float Opacity;
-        public int Color = 0;
-        public int SecondaryColor = 0;
-    }
-
-    public enum Sex : int
-    {
-        Men = 0,
-        Female = 1
+        public int id { get; set; }
+        public int opacity { get; set; }
+        public int value { get; set; }
     }
 
     public class PlayerCustomization
     {
-        // Player
-        public Sex Gender;
-
-        // Parents
-        public HeadBlend Parents;
-
-        // Features
-        public float[] Features = new float[20];
-
-        // Appearance
-        public HeadOverlay[] Appearance = new HeadOverlay[10];
-
-        // Tatouages
-        public List<Decoration> Decorations = new List<Decoration>();
-
-        // Hair & Colors
-        public HairData Hair;
-
-        public int EyeColor;
-
-        public PlayerCustomization()
-        {
-            Gender = 0;
-            Parents = new HeadBlend();
-
-            for (int i = 0; i < Features.Length; i++)
-                Features[i] = 0;
-            for (int i = 0; i < Appearance.Length; i++)
-                Appearance[i] = new HeadOverlay();
-
-            Hair = new HairData(0, 0, 0);
-        }
+        public List<ColorOverlay> colorOverlays { get; set; }
+        public int eyebrows { get; set; }
+        public int eyes { get; set; }
+        public int eyebrowsColor1 { get; set; }
+        public int eyebrowsOpacity { get; set; }
+        public double faceMix { get; set; }
+        public int facialHairOpacity { get; set; }
+        public int faceFather { get; set; }
+        public int faceMother { get; set; }
+        public int facialHair { get; set; }
+        public int facialHairColor1 { get; set; }
+        public int hair { get; set; }
+        public int hairColor1 { get; set; }
+        public int hairColor2 { get; set; }
+        public HairOverlay hairOverlay { get; set; }
+        public List<OpacityOverlay> opacityOverlays { get; set; }
+        public int sex { get; set; }
+        public int skinFather { get; set; }
+        public double skinMix { get; set; }
+        public int skinMother { get; set; }
+        public List<int> structure { get; set; }
 
         public void ApplyCharacter(IPlayer player)
         {
@@ -88,10 +57,10 @@ namespace FiveZ.Entities.Survivors
                 if (!player.Exists)
                     return;
 
-                player.Emit("ApplyCharacter", JsonConvert.SerializeObject(this));
+                player.Emit("character:Sync", JsonConvert.SerializeObject(this));
             }
         }
-
+        /*
         public bool HasDecoration(uint overlay)
         {
             if (Decorations == null)
@@ -104,6 +73,6 @@ namespace FiveZ.Entities.Survivors
             }
 
             return false;
-        }
+        }*/
     }
 }

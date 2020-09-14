@@ -13,6 +13,8 @@ namespace FiveZ
     {
         public static int MainThreadId { get; private set; }
 
+        public static bool Started { get; private set; }
+
         public Main()
         {
             Console.WriteLine("Loading FiveZ Server...");   
@@ -34,7 +36,9 @@ namespace FiveZ
             VehiclesManager.Init();
             SurvivorsManager.Init();
             PlayerKeyHandler.Init();
-            Streamer.Init();
+            //Streamer.Init();
+
+            Started = true;
 
             Console.WriteLine("Loaded FiveZ Server!");
         }

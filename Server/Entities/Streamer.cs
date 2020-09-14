@@ -16,10 +16,11 @@ namespace FiveZ.Entities
     {
         public static void Init()
         {
+            /*
             AltEntitySync.Init(1, 100,
                repository => new ServerEventNetworkLayer(repository),
                () => new LimitedGrid3(50_000, 50_000, 100, 10_000, 10_000, 600),
-               new IdProvider());
+               new IdProvider());*/
         }
     }
 }

@@ -2,8 +2,8 @@
   "profiles": {
     "Server": {
       "commandName": "Executable",
-      "executablePath": "C:\\AltV\\server-files\\altv-server.exe",
-      "workingDirectory": "C:\\AltV\\server-files"
+      "executablePath": "D:\\AltV\\Server\\altv-server.exe",
+      "workingDirectory": "D:\\AltV\\Server"
     }
   }
 }

@@ -10,20 +10,29 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\AltV\server-files\resources\fivez\server\</OutputPath>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="set ResourceDir=C:\altv\server-files\resources\fivez&#xD;&#xA;set ServerDir=%25ResourceDir%25\Server&#xD;&#xA;xcopy /Y $(TargetPath) %25ServerDir%25&#xD;&#xA;" />
+    <Exec Command="xcopy /Y $(TargetPath) D:\AltV\Server\resources\FiveZ\Server&#xD;&#xA;" />
   </Target>
+
+  <ItemGroup>
+    <Compile Remove="Chat\**" />
+    <EmbeddedResource Remove="Chat\**" />
+    <None Remove="Chat\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Entities\Entity.cs bk" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AltV.Net.EntitySync" Version="1.0.20-dev-preview" />
-    <PackageReference Include="AltV.Net.EntitySync.ServerEvent" Version="1.0.19-dev-preview" />
+    <PackageReference Include="AltV.Net" Version="1.38.4" />
+    <PackageReference Include="AltV.Net.Async" Version="1.38.4" />
+    <PackageReference Include="AltV.Net.EntitySync" Version="1.7.0-dev-preview" />
+    <PackageReference Include="AltV.Net.EntitySync.ServerEvent" Version="1.7.0-dev-preview" />
+    <PackageReference Include="AltV.Net.Resources.Chat.Api" Version="1.38.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />

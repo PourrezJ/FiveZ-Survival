@@ -14,7 +14,7 @@ namespace FiveZ.Entities
     {
         public static void Init()
         {
-            Alt.OnClient<Survivor, string>("MakePlayer", MakePlayer);
+            Alt.OnClient<Survivor, string>("character:Done", MakePlayer);
 
             Utils.Util.SetInterval(async () =>
             {
@@ -57,6 +57,9 @@ namespace FiveZ.Entities
 
             ulong socialID = client.SocialClubId;
 
+            var cdata = JsonConvert.DeserializeObject(charData);
+
+            
             Task.Run(async () => 
             {
                 client.SurvivorData = new SurvivorData(socialID);

@@ -1,6 +1,6 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using AltV.Net.Async;
+using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
-using FiveZ.Chat;
 using FiveZ.Utils.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -27,9 +27,14 @@ namespace FiveZ.Entities.Survivors
 
             Task.Run(async () =>
             {
+                while (!Main.Started)
+                {
+                    System.Threading.Thread.Sleep(0);
+                }
+
                 SurvivorData = await SurvivorsManager.GetPlayerDatabase(social);
 
-                lock (this)
+                await AltV.Net.Async.AltAsync.Do(() =>
                 {
                     if (!Exists)
                         return;
@@ -38,8 +43,8 @@ namespace FiveZ.Entities.Survivors
 
                     if (SurvivorData == null)
                     {
-                        Spawn(new AltV.Net.Data.Position(0, 0, 70), 0);
-                        Emit("OpenCreator");
+                        Spawn(new AltV.Net.Data.Position(1547.5f, 6620f, 1.404f), 0);
+                        FiveZ.Utils.Util.Delay(1000, (()=> this.EmitLocked("character:Edit")));
                         AltV.Net.Alt.Server.LogInfo("New player: " + social);
                     }
                     else
@@ -50,7 +55,7 @@ namespace FiveZ.Entities.Survivors
                         Dimension = Globals.GLOBAL_DIMENSION;
                         this.FadeIn(500);
                     }
-                }
+                });
             });        
         }
 

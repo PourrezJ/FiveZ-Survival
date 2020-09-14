@@ -27,11 +27,12 @@ namespace FiveZ.Database
 
             try
             {
-                string host = Config.GetSetting<string>("host");
-                string databaseName = Config.GetSetting<string>("database");
-                string user = Config.GetSetting<string>("user");
-                string password = Config.GetSetting<string>("password");
-                int port = Config.GetSetting<int>("port");
+
+                string host = Config.GetSetting<string>("Host");
+                string databaseName = Config.GetSetting<string>("Database");
+                string user = Config.GetSetting<string>("User");
+                string password = Config.GetSetting<string>("Password");
+                int port = Config.GetSetting<int>("Port");
 
                 if (!string.IsNullOrEmpty(host))
                     _client = new MongoClient($"mongodb://{user}:{password}@{host}:{port}");

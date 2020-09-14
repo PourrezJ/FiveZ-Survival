@@ -89,7 +89,8 @@ const init = async () => {
         menuManager.onKeyDown(key);
     });
 
-    alt.onServer('OpenCreator', () => {
+    alt.onServer('character:Edit', () => {
+        alt.log("OpenCharCreator");
         OpenCharCreator();
     });
 

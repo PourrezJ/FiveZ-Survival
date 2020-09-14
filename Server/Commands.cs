@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
-using FiveZ.Chat;
+using AltV.Net.Resources.Chat.Api;
 using FiveZ.Entities;
 
 namespace FiveZ
