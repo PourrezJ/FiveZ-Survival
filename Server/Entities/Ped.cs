@@ -1,13 +1,10 @@
 ﻿using AltV.Net.EntitySync;
 using AltV.Net.Enums;
-using System;
-using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
 
 namespace FiveZ.Entities
 {
-    public class Ped : Entity
+    public class Ped : AltV.Net.EntitySync.Entity, AltV.Net.EntitySync.IEntity
     {
         private PedModel model;
         public PedModel Model

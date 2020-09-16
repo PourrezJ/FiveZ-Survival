@@ -1,4 +1,5 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using AltV.Net;
+using AltV.Net.Elements.Entities;
 using AltV.Net.EntitySync;
 using AltV.Net.Enums;
 using FiveZ.Entities.Survivors;

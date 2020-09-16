@@ -133,6 +133,7 @@
     <TypeScriptCompile Include="client\utils\Util.ts" />
     <TypeScriptCompile Include="client\Vehicle.ts" />
     <TypeScriptCompile Include="client\WheelMenuManager.ts" />
+    <TypeScriptCompile Include="client\Zed.ts" />
     <TypeScriptCompile Include="typings\alt.ts" />
     <TypeScriptCompile Include="typings\natives.d.ts" />
   </ItemGroup>

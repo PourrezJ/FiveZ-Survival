@@ -28,7 +28,7 @@ namespace FiveZ.Chat
                 RegisterEvents(script /*, chat*/);
             }
 
-            Alt.OnClient<IPlayer, string>("chat:message", OnChatMessage, OnChatMessageParser);
+            Alt.OnClient<IPlayer, string>("chatmessage", OnChatMessage, OnChatMessageParser);
         }
 
         private static void OnChatMessageParser(IPlayer player, MValueConst[] mValueArray,

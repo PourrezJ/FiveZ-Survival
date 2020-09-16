@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
-using AltV.Net.Resources.Chat.Api;
+using FiveZ.Chat;
 using FiveZ.Entities;
 
 namespace FiveZ
@@ -12,7 +12,7 @@ namespace FiveZ
         {
             if (player == null || !player.Exists) return;
 
-            new Ped(AltV.Net.Enums.PedModel.Abigail, player.Position, 0, 500);
+            new Zed(AltV.Net.Enums.PedModel.Abigail, player.Position, 0, 500);
         }
 
         [Command("revive")]

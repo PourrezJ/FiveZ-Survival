@@ -36,7 +36,7 @@ namespace FiveZ
             VehiclesManager.Init();
             SurvivorsManager.Init();
             PlayerKeyHandler.Init();
-            //Streamer.Init();
+            Streamer.Init();
 
             Started = true;
 
