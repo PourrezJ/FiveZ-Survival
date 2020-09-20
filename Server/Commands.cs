@@ -12,7 +12,9 @@ namespace FiveZ
         {
             if (player == null || !player.Exists) return;
 
-            new Zed(AltV.Net.Enums.PedModel.Abigail, player.Position, 0, 500);
+            var zed = new Zed(AltV.Net.Enums.PedModel.Abigail, player.Position, 0, 500);
+
+        
         }
 
         [Command("revive")]

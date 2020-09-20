@@ -1,6 +1,7 @@
 ﻿import * as alt from 'alt-client';
 import * as game from 'natives';
 import { Ped } from './models/Ped';
+import { Zed } from './Zed';
 
 let Entities: Array<any> = new Array<any>();
 
@@ -14,20 +15,24 @@ export class Entity {
 
 export function initialize()
 {
-    alt.onServer("entitySync:create", (entity: Entity) => {
+    alt.onServer("entitySync:create", (entityId: number, entityType: number, position: alt.Vector3, currEntityData: any) => {
         alt.log("entitySync:create");
-        alt.log(entity.id);
-        alt.log(entity.type);
-        alt.log(entity.position);
+        alt.log(`ID: ${entityId} TYPE: ${entityType} POS: ${JSON.stringify(position)} DATA: ${JSON.stringify(currEntityData)}`);
 
-        switch (entity.type) {
+
+        switch (entityType) {
             case 0:
                 //Marker
                 break;
 
             case 1:
                 //Ped
-                Entities[entity.id] = new Ped(entity.id, entity.data.Model, entity.position, 0);
+                Entities[entityId] = new Ped(entityId, currEntityData.Model, position, 0);
+                break;
+
+            case 2:
+                //Zed
+                Entities[entityId] = new Zed(entityId, currEntityData.Model, position, 0);
                 break;
         }
     })
@@ -57,6 +62,10 @@ export function initialize()
             case 1:
                 //Ped
                 break;
+
+            case 2:
+
+                break;
         }
     })
 
@@ -79,6 +88,8 @@ export function initialize()
     alt.onServer("entitySync:clearCache", (entityId: number) => {
         delete Entities[entityId];
     })
+
+    alt.log("Streamer Initialized");
 }
 
 export function onTick() {

@@ -1,4 +1,5 @@
 ﻿using AltV.Net.EntitySync;
+using AltV.Net.EntitySync.ServerEvent;
 using AltV.Net.EntitySync.SpatialPartitions;
 using FiveZ.Models;
 
@@ -27,8 +28,6 @@ namespace FiveZ
                   (threadId) => new LimitedGrid3(50_000, 50_000, 100, 10_000, 10_000, 128),
                   new IdProvider()
               );
-
-
         }
 
         private static void OnEntityRemove(IClient client, in AltV.Net.EntitySync.Events.EntityRemoveEvent entityRemove)
